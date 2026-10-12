@@ -1,0 +1,39 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "frontend": {
+      "root": "frontend",
+      "framework": "vite"
+    },
+    "docker": {
+      "root": "labs/docker",
+      "framework": "flask"
+    },
+    "starter": {
+      "root": "projects/capstone/starter",
+      "framework": "flask",
+      "bindings": [
+        {
+          "type": "service",
+          "service": "docker",
+          "format": "url",
+          "env": "DOCKER_SERVICE_URL"
+        }
+      ]
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": {
+        "service": "starter"
+      }
+    },
+    {
+      "source": "/(.*)",
+      "destination": {
+        "service": "frontend"
+      }
+    }
+  ]
+}

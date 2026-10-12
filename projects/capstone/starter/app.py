@@ -54,19 +54,27 @@ def init_db():
     except Exception as e:
         logger.error(f"Failed to initialize database: {str(e)}")
 
+# Internal service binding (injected by Vercel Services)
+DOCKER_SERVICE_URL = os.environ.get("DOCKER_SERVICE_URL")
+
 # Initialize DB table on application startup
 init_db()
 
 @app.route("/", methods=["GET"])
+@app.route("/api", methods=["GET"])
 def root():
     """Root endpoint."""
     return jsonify({
         "service": "cloud-native-task-manager-api",
         "version": "1.0.0",
-        "status": "online"
+        "status": "online",
+        "internal_services": {
+            "docker_service_bound": bool(DOCKER_SERVICE_URL)
+        }
     }), 200
 
 @app.route("/health", methods=["GET"])
+@app.route("/api/health", methods=["GET"])
 def health():
     """Liveness and readiness probe checking application and DB connectivity."""
     db_status = "healthy"
@@ -197,7 +205,35 @@ def delete_task(task_id):
         return jsonify({"message": f"Task {task_id} successfully deleted"}), 200
     except Exception as e:
         logger.error(f"Error deleting task {task_id}: {str(e)}")
-        return jsonify({"error": "Failed to delete task"}), 500
+@app.route("/api/v1/internal/docker", methods=["GET"])
+def call_internal_docker():
+    """Call internal 'docker' service using bound Vercel service URL."""
+    if not DOCKER_SERVICE_URL:
+        return jsonify({
+            "error": "Internal service binding 'DOCKER_SERVICE_URL' is not configured",
+            "message": "Set up a service binding in vercel.json targeting the 'docker' service."
+        }), 503
+
+    import urllib.request
+    try:
+        target_url = f"{DOCKER_SERVICE_URL.rstrip('/')}/health"
+        req = urllib.request.Request(target_url, headers={"User-Agent": "CapstoneTaskManager/1.0"})
+        with urllib.request.urlopen(req, timeout=5) as response:
+            payload = json.loads(response.read().decode("utf-8"))
+            return jsonify({
+                "status": "success",
+                "caller": "starter",
+                "target_service": "docker",
+                "target_url": target_url,
+                "data": payload
+            }), 200
+    except Exception as e:
+        logger.error(f"Failed to communicate with internal docker service: {str(e)}")
+        return jsonify({
+            "error": "Failed to communicate with internal docker service",
+            "details": str(e),
+            "target_url": DOCKER_SERVICE_URL
+        }), 502
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
