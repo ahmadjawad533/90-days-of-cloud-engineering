@@ -1,0 +1,48 @@
+name: 🐛 Bug in Lab Code
+description: Report a bug in lab code, scripts, or configurations
+labels: ['bug']
+body:
+  - type: input
+    id: lab-file
+    attributes:
+      label: Which lab/file?
+      placeholder: 'e.g. labs/docker-compose/docker-compose.yml'
+    validations:
+      required: true
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Steps to reproduce the behavior.
+      placeholder: |
+        1. Run command '...'
+        2. See error '...'
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
+  - type: textarea
+    id: environment
+    attributes:
+      label: Your environment
+      description: Operating system, architecture, tool versions (e.g. Docker, Terraform, Python, AWS CLI).
+      placeholder: |
+        - OS: Ubuntu 22.04 / macOS Sonoma / Windows WSL2
+        - Tool version: docker version 24.0.5
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots or terminal logs to help explain your problem.
+    validations:
+      required: false

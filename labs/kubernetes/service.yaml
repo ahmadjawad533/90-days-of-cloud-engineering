@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloud-web-service
+  labels:
+    app: cloud-web
+spec:
+  type: ClusterIP
+  selector:
+    app: cloud-web
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

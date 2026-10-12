@@ -1,0 +1,4 @@
+# CODEOWNERS defines individuals or teams that are responsible for code in the repository.
+# GitHub uses this to automatically request reviews from the designated owners when a pull request is opened.
+
+* @ahmadjawad533

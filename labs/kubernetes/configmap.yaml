@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: web-config
+  labels:
+    app: cloud-web
+data:
+  APP_ENV: "production"
+  APP_MESSAGE: "Hello from Kubernetes! Welcome to 90 Days of Cloud Engineering."
+  PORT: "80"

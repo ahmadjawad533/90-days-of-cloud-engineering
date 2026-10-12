@@ -1,0 +1,42 @@
+# Stage 1: Build stage (builder)
+# Installs build dependencies and builds Python wheels
+FROM python:3.11-slim AS builder
+
+WORKDIR /build
+
+# Install any build tools if needed
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy dependency definitions and build wheels
+COPY requirements.txt .
+RUN pip install --no-cache-dir --user -r requirements.txt
+
+# -------------------------------------------------------------
+# Stage 2: Final runtime stage
+# Only copies installed packages from the builder stage; no compiler tools
+FROM python:3.11-slim AS runner
+
+WORKDIR /app
+
+# Create a non-root user for security
+RUN groupadd -r appgroup && useradd -r -g appgroup -s /sbin/nologin appuser
+
+# Copy Python packages from builder stage's user site-packages
+COPY --from=builder /root/.local /home/appuser/.local
+
+# Copy application source code
+COPY --chown=appuser:appgroup app.py .
+
+# Update PATH to include local user binaries
+ENV PATH=/home/appuser/.local/bin:$PATH \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+# Run as non-root user
+USER appuser
+
+EXPOSE 5000
+
+CMD ["python", "app.py"]

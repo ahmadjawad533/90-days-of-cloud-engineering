@@ -1,0 +1,42 @@
+---
+- name: Cloud Engineering Node Configuration Lab
+  hosts: webservers
+  gather_facts: true
+
+  vars:
+    app_dir: /tmp/ansible-lab-demo
+    greeting_message: "Hello from Ansible configured server!"
+
+  tasks:
+    - name: Display host distribution information
+      ansible.builtin.debug:
+        msg: "Target OS is {{ ansible_distribution }} {{ ansible_distribution_version }} running on {{ ansible_architecture }}"
+
+    - name: Ensure target application directory exists
+      ansible.builtin.file:
+        path: "{{ app_dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: Deploy application index file
+      ansible.builtin.copy:
+        dest: "{{ app_dir }}/index.html"
+        content: |
+          <!DOCTYPE html>
+          <html>
+          <head><title>Ansible Managed Page</title></head>
+          <body>
+            <h1>{{ greeting_message }}</h1>
+            <p>Managed host: {{ ansible_hostname }}</p>
+          </body>
+          </html>
+        mode: '0644'
+
+    - name: Verify file was written
+      ansible.builtin.stat:
+        path: "{{ app_dir }}/index.html"
+      register: file_check
+
+    - name: Print verification summary
+      ansible.builtin.debug:
+        msg: "File {{ app_dir }}/index.html exists: {{ file_check.stat.exists }}"

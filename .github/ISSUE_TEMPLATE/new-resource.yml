@@ -1,0 +1,53 @@
+name: 📚 New Resource Suggestion
+description: Suggest a learning resource to add
+labels: ['enhancement', 'new-resource']
+body:
+  - type: input
+    id: resource-title
+    attributes:
+      label: Resource title
+    validations:
+      required: true
+  - type: input
+    id: resource-url
+    attributes:
+      label: Resource URL
+      placeholder: https://example.com/resource
+    validations:
+      required: true
+  - type: input
+    id: day-or-topic
+    attributes:
+      label: Which day/topic?
+      placeholder: 'e.g. Day 12 / Docker or Kubernetes'
+    validations:
+      required: true
+  - type: dropdown
+    id: resource-type
+    attributes:
+      label: Resource type
+      options:
+        - Video
+        - Article
+        - Documentation
+        - Tutorial
+        - Course
+        - Tool
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: is-free
+    attributes:
+      label: Is it free?
+      options:
+        - Yes - completely free
+        - Free with optional paid tier
+        - 💳 Requires payment
+    validations:
+      required: true
+  - type: textarea
+    id: why-helpful
+    attributes:
+      label: Why is this resource helpful?
+      description: Explain how this resource helps learners understand the topic better.

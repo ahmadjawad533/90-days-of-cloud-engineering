@@ -1,0 +1,31 @@
+name: 🔗 Broken Link Report
+description: Report a broken or outdated link
+labels: ['bug', 'broken-link']
+body:
+  - type: input
+    id: link-url
+    attributes:
+      label: Link URL
+      placeholder: https://example.com/broken-link
+    validations:
+      required: true
+  - type: input
+    id: link-location
+    attributes:
+      label: Where is the link?
+      description: 'File path, e.g. days/day-05/README.md'
+      placeholder: days/day-05/README.md
+    validations:
+      required: true
+  - type: textarea
+    id: link-destination
+    attributes:
+      label: What does the link point to?
+      description: What resource or content was the link supposed to point to?
+  - type: textarea
+    id: suggested-replacement
+    attributes:
+      label: Suggested replacement
+      description: If you know a working URL or alternative resource, please share it here.
+    validations:
+      required: false

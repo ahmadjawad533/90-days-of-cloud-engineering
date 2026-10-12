@@ -1,0 +1,53 @@
+name: Link Checker
+
+on:
+  schedule:
+    # Run every Sunday at midnight UTC
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  link-checker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Restore lychee cache
+        uses: actions/cache@v4
+        with:
+          path: .lycheecache
+          key: lychee-cache-${{ runner.os }}-${{ github.sha }}
+          restore-keys: |
+            lychee-cache-${{ runner.os }}-
+
+      - name: Run Lychee Link Checker
+        id: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --cache
+            --max-cache-age 7d
+            --exclude-all-private
+            --exclude "(https?://(localhost|127\.0\.0\.1|your-username|example\.com).*)"
+            --exclude "(https?://(console\.aws\.amazon\.com|portal\.azure\.com|console\.cloud\.google\.com).*)"
+            --verbose
+            --no-progress
+            './**/*.md'
+          output: ./lychee/out.md
+          fail: false
+
+      - name: Create or update issue on link check failure
+        if: steps.lychee.outputs.exit_code != 0
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "🔗 Automated Link Checker: Broken Links Detected"
+          issue-number: "${{ steps.lychee.outputs.issue_number }}"
+          content-filepath: ./lychee/out.md
+          labels: |
+            bug
+            broken-link

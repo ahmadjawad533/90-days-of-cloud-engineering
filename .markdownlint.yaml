@@ -1,0 +1,34 @@
+# Default markdownlint rules configured for educational technical repositories
+default: true
+
+# Line length - disable strict 80-char wrap as documentation contains long URLs and commands
+MD013: false
+
+# Inline HTML - allow details/summary for FAQ, align center tags for badges
+MD033:
+  allowed_elements:
+    - details
+    - summary
+    - p
+    - a
+    - img
+    - br
+    - sub
+    - sup
+    - span
+    - table
+    - tr
+    - td
+    - th
+
+# Multiple consecutive blank lines
+MD012: false
+
+# First line in file should be a top-level heading - allow badge / navigation prefixes
+MD041: false
+
+# Bare URL used - allow standard links
+MD034: false
+
+# Trailing punctuation in heading
+MD026: false

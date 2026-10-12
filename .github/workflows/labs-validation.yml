@@ -1,0 +1,93 @@
+name: Labs & Code Validation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  terraform:
+    name: Terraform Format & Validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.0"
+
+      - name: Check Terraform formatting (Root)
+        run: terraform fmt -check -recursive labs/terraform
+
+      - name: Validate Terraform Root Module
+        working-directory: labs/terraform
+        run: |
+          terraform init -backend=false
+          terraform validate
+
+      - name: Validate Terraform VPC Module
+        working-directory: labs/terraform/modules/vpc
+        run: |
+          terraform init -backend=false
+          terraform validate
+
+  dockerfile-lint:
+    name: Dockerfile Linting (Hadolint)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Lint Labs Dockerfile
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: labs/docker/Dockerfile
+          failure-threshold: warning
+
+      - name: Lint Multistage Dockerfile
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: labs/docker/Dockerfile.multistage
+          failure-threshold: warning
+
+      - name: Lint Capstone Dockerfile
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: projects/capstone/starter/Dockerfile
+          failure-threshold: warning
+
+  scripts-and-python:
+    name: Shell & Python Syntax Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies for test compilation
+        run: |
+          pip install flake8
+
+      - name: Verify Python Syntax
+        run: |
+          python3 -m py_compile labs/python/resource_tagger.py
+          python3 -m py_compile labs/docker/app.py
+          python3 -m py_compile projects/capstone/starter/app.py
+          flake8 --select=E9,F63,F7,F82 --show-source labs/python/ labs/docker/ projects/capstone/starter/
+
+      - name: Verify Shell Scripts Syntax
+        run: |
+          for script in $(find labs -name "*.sh"); do
+            echo "Checking syntax: $script"
+            bash -n "$script"
+          done

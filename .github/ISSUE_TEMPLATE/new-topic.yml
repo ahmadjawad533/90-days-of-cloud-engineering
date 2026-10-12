@@ -1,0 +1,48 @@
+name: 💡 New Topic Suggestion
+description: Suggest a new topic or day to add
+labels: ['enhancement', 'new-topic']
+body:
+  - type: input
+    id: topic-title
+    attributes:
+      label: Topic title
+    validations:
+      required: true
+  - type: dropdown
+    id: module
+    attributes:
+      label: Which module does it belong to?
+      options:
+        - Cloud Fundamentals
+        - Linux
+        - Git
+        - Python
+        - AWS
+        - Containers
+        - Kubernetes
+        - IaC
+        - CI/CD
+        - Monitoring
+        - Security
+        - Capstone
+        - Bonus
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Provide an overview of the suggested topic.
+    validations:
+      required: true
+  - type: textarea
+    id: hands-on-task
+    attributes:
+      label: What hands-on task would learners do?
+      description: Describe practical tasks, labs, or exercises learners would complete.
+  - type: textarea
+    id: resources
+    attributes:
+      label: Resources
+      description: Relevant documentation, guides, or reference materials.
