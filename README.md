@@ -2,10 +2,23 @@
 
 **Go from zero to job-ready junior cloud engineer — completely free, at your own pace.**
 
+[![GitHub stars](https://img.shields.io/github/stars/ahmadjawad533/90-days-of-cloud-engineering?style=social)](https://github.com/ahmadjawad533/90-days-of-cloud-engineering/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/ahmadjawad533/90-days-of-cloud-engineering?style=social)](https://github.com/ahmadjawad533/90-days-of-cloud-engineering/network/members)
 [![License: MIT](https://img.shields.io/badge/Code-MIT-blue.svg)](LICENSE)
 [![License: CC BY 4.0](https://img.shields.io/badge/Content-CC%20BY%204.0-lightgrey.svg)](LICENSE-CONTENT.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![Maintenance](https://img.shields.io/badge/Maintained-yes-green.svg)](https://github.com/ahmadjawad533/90-days-of-cloud-engineering)
+[![Share on X](https://img.shields.io/badge/Share%20on-X%20(Twitter)-black?logo=x)](https://twitter.com/intent/tweet?text=Leveling%20up%20my%20cloud%20skills%20with%20the%20free%2090%20Days%20of%20Cloud%20Engineering%20roadmap!%20Check%20it%20out:%20https://github.com/ahmadjawad533/90-days-of-cloud-engineering%20%2390DaysOfCloudEngineering)
+[![Share on LinkedIn](https://img.shields.io/badge/Share%20on-LinkedIn-0077b5?logo=linkedin)](https://www.linkedin.com/sharing/share-offsite/?url=https://github.com/ahmadjawad533/90-days-of-cloud-engineering)
+
+> 🌟 **Support Free Cloud Education:** If this roadmap helps your learning or career, please consider giving it a **Star ⭐**! It helps others discover this free curriculum and keeps the project growing.
+
+---
+
+### 🌐 Interactive Web Portal Available
+Prefer learning through a modern interactive web dashboard?
+- 🖥️ **Web Application**: Check out [90-days-of-cloud-engineering-web](https://github.com/ahmadjawad533/90-days-of-cloud-engineering-web)
+- Features: Real-time progress tracking saved to browser storage, copyable CLI cheatsheets, filterable glossary, and 70+ flashcard interview questions!
 
 ---
 
@@ -265,6 +278,22 @@ Some resources marked with 💳 have optional paid tiers — you never need to p
    ```
 4. **Open** [PROGRESS_TRACKER.md](PROGRESS_TRACKER.md) and start checking boxes
 5. **Begin** [Day 1](days/day-01-what-is-cloud/README.md)
+
+---
+
+## 📣 Share Your Journey (#90DaysOfCloudEngineering)
+
+Learning in public accelerates your growth, builds your network, and catches the eye of hiring managers! 
+
+Post your daily or weekly milestones on **LinkedIn** and **X (Twitter)** using the hashtag **`#90DaysOfCloudEngineering`**:
+
+- **🚀 Kickoff Post Template**:
+  > *"I am officially starting the #90DaysOfCloudEngineering challenge created by @ahmadjawad533! ☁️ Over the next 90 days, I'll be mastering Linux, networking, Python, AWS, Docker, Kubernetes, Terraform, and CI/CD from scratch. Follow my journey: https://github.com/ahmadjawad533/90-days-of-cloud-engineering"*
+- **📌 Daily Milestone Post Template**:
+  > *"Day X/90 of #90DaysOfCloudEngineering: Today I learned [Topic] and built [Lab Name]! Key takeaway: [1 practical lesson]. Here's my GitHub repo: [link] 🚀"*
+
+[![Tweet Commitment](https://img.shields.io/badge/Tweet%20Your%20Commitment-black?style=for-the-badge&logo=x)](https://twitter.com/intent/tweet?text=I%20am%20officially%20taking%20on%20the%20%2390DaysOfCloudEngineering%20challenge!%20Leveling%20up%20from%20zero%20to%20job-ready%20cloud%20engineer%20for%20free:%20https://github.com/ahmadjawad533/90-days-of-cloud-engineering)
+[![Post on LinkedIn](https://img.shields.io/badge/Post%20on%20LinkedIn-0077b5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/sharing/share-offsite/?url=https://github.com/ahmadjawad533/90-days-of-cloud-engineering)
 
 ---
 
