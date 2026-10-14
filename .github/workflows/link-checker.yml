@@ -43,7 +43,7 @@ jobs:
 
       - name: Create or update issue on link check failure
         if: steps.lychee.outputs.exit_code != 0
-        uses: peter-evans/create-issue-from-file@v5
+        uses: peter-evans/create-issue-from-file@v6
         with:
           title: "🔗 Automated Link Checker: Broken Links Detected"
           issue-number: "${{ steps.lychee.outputs.issue_number }}"
