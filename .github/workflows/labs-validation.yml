@@ -45,19 +45,19 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Lint Labs Dockerfile
-        uses: hadolint/hadolint-action@v3.1.0
+        uses: hadolint/hadolint-action@v3.5.0
         with:
           dockerfile: labs/docker/Dockerfile
           failure-threshold: warning
 
       - name: Lint Multistage Dockerfile
-        uses: hadolint/hadolint-action@v3.1.0
+        uses: hadolint/hadolint-action@v3.5.0
         with:
           dockerfile: labs/docker/Dockerfile.multistage
           failure-threshold: warning
 
       - name: Lint Capstone Dockerfile
-        uses: hadolint/hadolint-action@v3.1.0
+        uses: hadolint/hadolint-action@v3.5.0
         with:
           dockerfile: projects/capstone/starter/Dockerfile
           failure-threshold: warning
