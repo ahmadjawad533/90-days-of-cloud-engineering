@@ -53,6 +53,7 @@ In today's session, you will learn how to dissect scenario-based cloud exam ques
    - **Official AWS Skill Builder**: Official sample question set and free practice exam.
    - **Tutorials Dojo (Jon Bonso)** 💳: Widely considered the gold standard for high-fidelity AWS exam question simulations with in-depth architectural explanations.
    - **Stephane Maarek / Adrian Cantrill Practice Tests** 💳: Comprehensive scenario coverage matching current exam outlines.
+   - **ExamCrest free sample questions**: Free [SAA-C03](https://examcrest.com/exam/aws-saa-c03/free-questions?utm_source=github&utm_campaign=90days-cloud) and [CLF-C02](https://examcrest.com/exam/aws-clf-c02/free-questions?utm_source=github&utm_campaign=90days-cloud) questions with every option explained, no signup. Full mock tests are 💳 (Paid).
 
 5. **Practice Explaining Architectural Decisions (The Feynman Technique)**:
    Pick three core AWS concepts and write a 2-paragraph explanation in plain English as if explaining them to a junior colleague or non-technical manager:
