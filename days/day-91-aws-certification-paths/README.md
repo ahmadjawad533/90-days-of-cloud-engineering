@@ -18,7 +18,7 @@ In today's session, you will review the major cloud certification tracks, identi
    - **Foundational (AWS Certified Cloud Practitioner - CLF-C02)**: Focuses on broad concepts, billing, cloud economics, and high-level service naming. Good for non-technical roles or complete beginners, but often skipped by engineering candidates.
    - **Associate Tiers (Core Engineering Focus)**:
      - **AWS Certified Solutions Architect – Associate (SAA-C03)**: Broad architectural patterns, resilience, high availability, VPC networking, compute, storage, databases, and cost optimization. The most recognized industry baseline.
-     - **AWS Certified SysOps Administrator – Associate (SOA-C02)**: Operational monitoring, deployment automation, troubleshooting, CloudWatch, and systems administration.
+     - **AWS Certified CloudOps Engineer – Associate (SOA-C03)**, formerly SysOps Administrator – Associate: Operational monitoring, deployment automation, troubleshooting, CloudWatch, and systems administration.
      - **AWS Certified Developer – Associate (DVA-C03)**: Application development on AWS, Lambda, API Gateway, DynamoDB, CI/CD with CodePipeline.
    - **Multi-Cloud Alternatives**:
      - **Azure**: AZ-900 (Fundamentals), AZ-104 (Azure Administrator Associate), AZ-305 (Azure Solutions Architect Expert).
